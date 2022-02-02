@@ -7,8 +7,8 @@ class FirebaseServices {
   CollectionReference banners = FirebaseFirestore.instance.collection('slider');
 
   // ignore: deprecated_member_use
-  FirebaseStorage storage = FirebaseStorage();
-  Future<QuerySnapshot> getAdminCredentials() {
+  FirebaseStorage storage = FirebaseStorage.instance;
+  Future<QuerySnapshot> getAdminCredentials(username) {
     var result = FirebaseFirestore.instance.collection('Admin').get();
     return result;
   }
@@ -23,7 +23,11 @@ class FirebaseServices {
     return downloadUrl;
   }
 
-  Future<void> confirmDeleteDialog({title, message, context}) async {
+  deleteBannerImagefromDb(id) async {
+    firestore.collection('slider').doc(id).delete();
+  }
+
+  Future<void> confirmDeleteDialog({title, message, context, id}) async {
     return showDialog<void>(
       context: context,
       barrierDismissible: false, // user must tap button!
@@ -48,6 +52,7 @@ class FirebaseServices {
             TextButton(
               child: const Text('Delete'),
               onPressed: () {
+                deleteBannerImagefromDb(id);
                 Navigator.of(context).pop();
               },
             ),

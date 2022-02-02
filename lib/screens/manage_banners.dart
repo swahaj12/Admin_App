@@ -2,6 +2,7 @@ import 'dart:html';
 
 import 'package:admin_pannel_app/screens/homescreen.dart';
 import 'package:admin_pannel_app/services/firebase_service.dart';
+
 import 'package:admin_pannel_app/services/sidebar.dart';
 import 'package:admin_pannel_app/widgets/banner_widget.dart';
 import 'package:ars_progress_dialog/ars_progress_dialog.dart';
@@ -171,10 +172,11 @@ class _BannerScreenState extends State<BannerScreen> {
   }
 
   void uploadImage({required Function(File file) onSelected}) {
-    InputElement uploadInput = FileUploadInputElement()..accept = 'image/*';
-    uploadImage.click();
+    FileUploadInputElement uploadInput = FileUploadInputElement();
+
+    uploadInput.click();
     uploadInput.onChange.listen((event) {
-      final file = uploadInput.files.first;
+      final file = uploadInput.files!.first;
       final reader = FileReader();
       reader.readAsDataUrl(file);
       reader.onLoadEnd.listen((event) {
@@ -189,7 +191,7 @@ class _BannerScreenState extends State<BannerScreen> {
     uploadImage(onSelected: (file) {
       if (file != null) {
         setState(() {
-          _fileNameTextController = file.name;
+          _fileNameTextController = file.name as TextEditingController;
           _imageSelected = false;
           _url = path;
         });
