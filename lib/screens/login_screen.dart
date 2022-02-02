@@ -47,26 +47,32 @@ class _LoginScreenState extends State<LoginScreen> {
               } catch (e) {
                 //if signin failed
                 progressDialog.dismiss();
-                _showDialog(title: 'Login', message: '${e.toString()}');
+                _services.showMyDialog(
+                    title: 'Login',
+                    context: context,
+                    message: '${e.toString()}');
               }
               return;
             }
             //if password incorrect
             progressDialog.dismiss();
-            _showDialog(
+            _services.showMyDialog(
+                context: context,
                 title: 'Incorrect Password',
                 message: 'Password you have entered in invalid');
             return;
           }
           //if username incorrect
           progressDialog.dismiss();
-          _showDialog(
+          _services.showMyDialog(
+              context: context,
               title: 'Invalid Username',
               message: 'Username you have entered in incorrect');
         }
         //if username incorrect
         progressDialog.dismiss();
-        _showDialog(
+        _services.showMyDialog(
+            context: context,
             title: 'Invalid Username',
             message: 'Username you have entered in incorrect');
       });
@@ -214,34 +220,6 @@ class _LoginScreenState extends State<LoginScreen> {
           );
         },
       ),
-    );
-  }
-
-  Future<void> _showDialog({title, message}) async {
-    return showDialog<void>(
-      context: context,
-      barrierDismissible: false, // user must tap button!
-      builder: (BuildContext context) {
-        return AlertDialog(
-          title: Text(title),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                Text(message),
-                Text('Please try again'),
-              ],
-            ),
-          ),
-          actions: <Widget>[
-            TextButton(
-              child: const Text('OK'),
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-            ),
-          ],
-        );
-      },
     );
   }
 }
