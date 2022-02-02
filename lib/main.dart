@@ -7,6 +7,7 @@ import 'package:admin_pannel_app/screens/notification_screen.dart';
 import 'package:admin_pannel_app/screens/order_screen.dart';
 import 'package:admin_pannel_app/screens/settings_screen.dart';
 import 'package:admin_pannel_app/screens/splash_screen.dart';
+import 'package:admin_pannel_app/screens/vendor_screen.dart';
 
 import 'package:flutter/material.dart';
 
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
         NotificationScreen.id: (context) => NotificationScreen(),
         AdminUsers.id: (context) => AdminUsers(),
         SettingScreen.id: (context) => SettingScreen(),
+        VendorScreen.id: (context) => VendorScreen(),
       },
     );
   }

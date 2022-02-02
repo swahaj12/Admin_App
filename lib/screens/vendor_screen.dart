@@ -1,23 +1,21 @@
-import 'dart:html';
-
-import 'package:admin_pannel_app/screens/homescreen.dart';
-import 'package:admin_pannel_app/services/firebase_service.dart';
-
 import 'package:admin_pannel_app/services/sidebar.dart';
-import 'package:admin_pannel_app/widgets/banner_upload_widget.dart';
-import 'package:admin_pannel_app/widgets/banner_widget.dart';
-import 'package:ars_progress_dialog/ars_progress_dialog.dart';
+import 'package:admin_pannel_app/widgets/vendor_datatable_widget.dart';
+import 'package:admin_pannel_app/widgets/vendor_filter_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_admin_scaffold/admin_scaffold.dart';
-import 'package:firebase/firebase.dart' as fb;
 
-class BannerScreen extends StatelessWidget {
-  static const String id = 'banner-screen';
-  const BannerScreen({Key? key}) : super(key: key);
+class VendorScreen extends StatefulWidget {
+  static const String id = 'vendor-screen';
+  const VendorScreen({Key? key}) : super(key: key);
 
   @override
+  _VendorScreenState createState() => _VendorScreenState();
+}
+
+class _VendorScreenState extends State<VendorScreen> {
+  SideBarWidget _sideBar = SideBarWidget();
+  @override
   Widget build(BuildContext context) {
-    SideBarWidget _sideBar = SideBarWidget();
     return AdminScaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -28,7 +26,7 @@ class BannerScreen extends StatelessWidget {
           style: TextStyle(color: Colors.white),
         ),
       ),
-      sideBar: _sideBar.sideBarMenus(context, BannerScreen.id),
+      sideBar: _sideBar.sideBarMenus(context, VendorScreen.id),
       body: SingleChildScrollView(
         child: Container(
           alignment: Alignment.topLeft,
@@ -37,21 +35,21 @@ class BannerScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Banner Screen',
+                'Manage Vendors',
                 style: TextStyle(
                   fontWeight: FontWeight.w700,
                   fontSize: 36,
                 ),
               ),
-              Text('Add/ Delete Home Screen Banner Images'),
+              Text('Manage All vendors Activity'),
               Divider(
                 thickness: 5,
               ),
-              BannerWidget(),
+              VendorFilterWidget(),
               Divider(
                 thickness: 5,
               ),
-              BannerUploadSwidget(),
+              VendorDataTable(),
             ],
           ),
         ),

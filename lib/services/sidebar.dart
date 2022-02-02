@@ -6,6 +6,7 @@ import 'package:admin_pannel_app/screens/manage_banners.dart';
 import 'package:admin_pannel_app/screens/notification_screen.dart';
 import 'package:admin_pannel_app/screens/order_screen.dart';
 import 'package:admin_pannel_app/screens/settings_screen.dart';
+import 'package:admin_pannel_app/screens/vendor_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_admin_scaffold/admin_scaffold.dart';
@@ -27,6 +28,10 @@ class SideBarWidget {
           route: BannerScreen.id,
           icon: CupertinoIcons.photo,
         ),
+        MenuItem(
+            title: 'Vendor',
+            route: VendorScreen.id,
+            icon: CupertinoIcons.group_solid),
         MenuItem(
           title: 'Category',
           route: CategoryScreen.id,

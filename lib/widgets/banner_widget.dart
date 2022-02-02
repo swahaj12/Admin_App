@@ -3,8 +3,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class BannerWidget extends StatelessWidget {
-  const BannerWidget({Key? key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     FirebaseServices _services = FirebaseServices();
@@ -39,7 +37,7 @@ class BannerWidget extends StatelessWidget {
                           child: ClipRRect(
                               borderRadius: BorderRadius.circular(4),
                               child: Image.network(
-                                document.data()['image'],
+                                document['image'],
                                 width: 400,
                                 fit: BoxFit.fill,
                               )),

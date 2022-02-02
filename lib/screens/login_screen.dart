@@ -33,8 +33,8 @@ class _LoginScreenState extends State<LoginScreen> {
       progressDialog.show();
       _services.getAdminCredentials(username).then((value) async {
         if (value.exists) {
-          if (value.data()['username'] == username) {
-            if (value.data()['password'] == password) {
+          if (value['username'] == username) {
+            if (value['password'] == password) {
               //if both is correct, will login
               try {
                 UserCredential userCredential =

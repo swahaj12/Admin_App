@@ -5,11 +5,12 @@ import 'package:flutter/material.dart';
 class FirebaseServices {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   CollectionReference banners = FirebaseFirestore.instance.collection('slider');
+  CollectionReference vendors =
+      FirebaseFirestore.instance.collection('vendors');
 
-  // ignore: deprecated_member_use
   FirebaseStorage storage = FirebaseStorage.instance;
-  Future<QuerySnapshot> getAdminCredentials(username) {
-    var result = FirebaseFirestore.instance.collection('Admin').get();
+  Future<DocumentSnapshot> getAdminCredentials(id) {
+    var result = FirebaseFirestore.instance.collection('Admin').doc(id).get();
     return result;
   }
 
@@ -25,6 +26,10 @@ class FirebaseServices {
 
   deleteBannerImagefromDb(id) async {
     firestore.collection('slider').doc(id).delete();
+  }
+
+  updateVednorStatus({id, status}) async {
+    vendors.doc(id).update({'accVerified': status ? false : true});
   }
 
   Future<void> confirmDeleteDialog({title, message, context, id}) async {
