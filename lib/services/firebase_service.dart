@@ -32,6 +32,10 @@ class FirebaseServices {
     vendors.doc(id).update({'accVerified': status ? false : true});
   }
 
+  updateTopPickedVednorStatus({id, status}) async {
+    vendors.doc(id).update({'isTopPicked': status ? false : true});
+  }
+
   Future<void> confirmDeleteDialog({title, message, context, id}) async {
     return showDialog<void>(
       context: context,

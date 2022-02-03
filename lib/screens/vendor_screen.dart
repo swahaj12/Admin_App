@@ -50,6 +50,9 @@ class _VendorScreenState extends State<VendorScreen> {
                 thickness: 5,
               ),
               VendorDataTable(),
+              Divider(
+                thickness: 5,
+              ),
             ],
           ),
         ),

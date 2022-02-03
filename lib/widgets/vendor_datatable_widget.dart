@@ -45,9 +45,9 @@ class VendorDataTable extends StatelessWidget {
               DataColumn(
                 label: Text('Total Sales'),
               ),
-              DataColumn(
+              /* DataColumn(
                 label: Text('Mobile'),
-              ),
+              ),*/
               DataColumn(
                 label: Text('Email'),
               ),
@@ -89,7 +89,7 @@ class VendorDataTable extends StatelessWidget {
         DataCell(
           IconButton(
               onPressed: () {
-                services.updateVednorStatus(
+                services.updateTopPickedVednorStatus(
                     id: document.data()['uid'],
                     status: document.data()['isTopPicked']);
               },
@@ -99,7 +99,8 @@ class VendorDataTable extends StatelessWidget {
                       color: Colors.green,
                     )
                   : Icon(
-                      null,
+                      Icons.remove_circle,
+                      color: Colors.red,
                     )),
         ),
         DataCell(
@@ -115,7 +116,7 @@ class VendorDataTable extends StatelessWidget {
           ],
         )),
         DataCell(Text('20,000')),
-        DataCell(Text(document.data()['mobile'] ?? "")),
+        // DataCell(Text(document.data()['mobile'] ?? "")),
         DataCell(Text(document.data()['email'] ?? "")),
         DataCell(IconButton(
           icon: Icon(Icons.remove_red_eye_outlined),
