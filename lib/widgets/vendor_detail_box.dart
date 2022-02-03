@@ -79,7 +79,7 @@ class _VendorDetailsBoxState extends State<VendorDetailsBox> {
                       ),
                       Column(
                         children: [
-                          /*   Padding(
+                          Padding(
                             padding: const EdgeInsets.only(top: 10.0),
                             child: Row(
                               children: [
@@ -92,8 +92,8 @@ class _VendorDetailsBoxState extends State<VendorDetailsBox> {
                                 )),
                                 Container(
                                   child: Padding(
-                                    padding:
-                                        const EdgeInsets.only(left: 10.0, right: 10),
+                                    padding: const EdgeInsets.only(
+                                        left: 10.0, right: 10),
                                     child: Text(':'),
                                   ),
                                 ),
@@ -103,7 +103,7 @@ class _VendorDetailsBoxState extends State<VendorDetailsBox> {
                                 )),
                               ],
                             ),
-                          ),*/
+                          ),
                           Padding(
                             padding: const EdgeInsets.only(top: 10.0),
                             child: Row(

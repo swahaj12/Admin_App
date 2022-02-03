@@ -114,9 +114,9 @@ class _VendorDataTableState extends State<VendorDataTable> {
                   DataColumn(
                     label: Text('Total Sales'),
                   ),
-                  /* DataColumn(
+                  DataColumn(
                     label: Text('Mobile'),
-                  ),*/
+                  ),
                   DataColumn(
                     label: Text('Email'),
                   ),
@@ -187,7 +187,7 @@ class _VendorDataTableState extends State<VendorDataTable> {
           ],
         )),
         DataCell(Text('20,000')),
-        // DataCell(Text(document.data()['mobile'] ?? "")),
+        DataCell(Text(document.data()['mobile'] ?? "")),
         DataCell(Text(document.data()['email'] ?? "")),
         DataCell(IconButton(
           icon: Icon(Icons.info_outline),
