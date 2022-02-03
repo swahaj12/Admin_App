@@ -5,16 +5,17 @@ import 'package:ars_progress_dialog/ars_progress_dialog.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase/firebase.dart' as fb;
 
-class BannerUploadSwidget extends StatefulWidget {
-  const BannerUploadSwidget({Key? key}) : super(key: key);
+class CategoryCreateWidget extends StatefulWidget {
+  const CategoryCreateWidget({Key? key}) : super(key: key);
 
   @override
-  _BannerUploadSwidgetState createState() => _BannerUploadSwidgetState();
+  _CategoryCreateWidgetState createState() => _CategoryCreateWidgetState();
 }
 
-class _BannerUploadSwidgetState extends State<BannerUploadSwidget> {
+class _CategoryCreateWidgetState extends State<CategoryCreateWidget> {
   FirebaseServices _services = FirebaseServices();
   var _fileNameTextController = TextEditingController();
+  var _categoryNameTextController = TextEditingController();
   bool _imageSelected = true;
   String? _url;
   bool _visible = false;
@@ -39,10 +40,27 @@ class _BannerUploadSwidgetState extends State<BannerUploadSwidget> {
               child: Container(
                 child: Row(
                   children: [
+                    SizedBox(
+                      width: 200,
+                      height: 30,
+                      child: TextField(
+                        controller: _categoryNameTextController,
+                        decoration: InputDecoration(
+                          focusedBorder: OutlineInputBorder(
+                              borderSide:
+                                  BorderSide(color: Colors.black, width: 1)),
+                          filled: true,
+                          fillColor: Colors.white,
+                          hintText: 'No Category name given',
+                          border: OutlineInputBorder(),
+                          contentPadding: EdgeInsets.only(left: 20),
+                        ),
+                      ),
+                    ),
                     AbsorbPointer(
                       absorbing: true,
                       child: SizedBox(
-                          width: 300,
+                          width: 200,
                           height: 30,
                           child: TextField(
                             controller: _fileNameTextController,
@@ -78,22 +96,31 @@ class _BannerUploadSwidgetState extends State<BannerUploadSwidget> {
                       // ignore: deprecated_member_use
                       child: FlatButton(
                         child: Text(
-                          'Save image',
+                          'Save New Category',
                           style: TextStyle(color: Colors.white),
                         ),
                         onPressed: () {
+                          if (_categoryNameTextController.text.isEmpty) {
+                            _services.showMyDialog(
+                                context: context,
+                                title: 'Add new Category',
+                                message: 'New Category Name not given');
+                          }
                           progressDialog.show();
                           _services
-                              .uploadBannerImageToDb(_url)
+                              .uploadCategoryImageToDb(
+                                  _url, _categoryNameTextController.text)
                               .then((downloadUrl) {
                             if (downloadUrl != null) {
                               progressDialog.dismiss();
                               _services.showMyDialog(
-                                  title: 'New Banner Image',
-                                  message: 'Saved Banner Image Suceessfully',
+                                  title: 'New Category',
+                                  message: 'Saved New Category Suceessfully',
                                   context: context);
                             }
                           });
+                          _categoryNameTextController.clear();
+                          _fileNameTextController.clear();
                         },
                         color: _imageSelected ? Colors.black12 : Colors.black54,
                       ),
@@ -108,7 +135,7 @@ class _BannerUploadSwidgetState extends State<BannerUploadSwidget> {
               child: FlatButton(
                 color: Colors.black54,
                 child: Text(
-                  'Add new Banner',
+                  'Add new Category',
                   style: TextStyle(color: Colors.white),
                 ),
                 onPressed: () {
@@ -139,7 +166,7 @@ class _BannerUploadSwidgetState extends State<BannerUploadSwidget> {
 
   void uploadStorage() {
     final dateTime = DateTime.now();
-    final path = 'bannerImage/$dateTime';
+    final path = 'CategoryImage/$dateTime';
     uploadImage(onSelected: (file) {
       if (file != null) {
         setState(() {

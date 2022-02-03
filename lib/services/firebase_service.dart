@@ -7,6 +7,8 @@ class FirebaseServices {
   CollectionReference banners = FirebaseFirestore.instance.collection('slider');
   CollectionReference vendors =
       FirebaseFirestore.instance.collection('vendors');
+  CollectionReference category =
+      FirebaseFirestore.instance.collection('category');
 
   FirebaseStorage storage = FirebaseStorage.instance;
   Future<DocumentSnapshot> getAdminCredentials(id) {
@@ -34,6 +36,17 @@ class FirebaseServices {
 
   updateTopPickedVednorStatus({id, status}) async {
     vendors.doc(id).update({'isTopPicked': status ? false : true});
+  }
+
+  Future<String> uploadCategoryImageToDb(url, catName) async {
+    String downloadUrl = await storage.ref(url).getDownloadURL();
+    if (downloadUrl != null) {
+      category.doc(catName).set({
+        'image': downloadUrl,
+        'name': catName,
+      });
+    }
+    return downloadUrl;
   }
 
   Future<void> confirmDeleteDialog({title, message, context, id}) async {
