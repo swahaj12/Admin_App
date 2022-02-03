@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:admin_pannel_app/services/firebase_service.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -12,7 +14,7 @@ class VendorDataTable extends StatelessWidget {
     return StreamBuilder(
       stream:
           _services.vendors.orderBy('shopName', descending: true).snapshots(),
-      builder: (context, snapshot) {
+      builder: (context, AsyncSnapshot snapshot) {
         if (snapshot.hasError) {
           return Text('Something went wrong');
         }
@@ -101,7 +103,7 @@ class VendorDataTable extends StatelessWidget {
                     )),
         ),
         DataCell(
-          Text(document.data()['shopName']),
+          Text(document.data()['shopName'] ?? ""),
         ),
         DataCell(Row(
           children: [
@@ -113,8 +115,8 @@ class VendorDataTable extends StatelessWidget {
           ],
         )),
         DataCell(Text('20,000')),
-        DataCell(Text(document.data()['mobile'])),
-        DataCell(Text(document.data()['email'])),
+        DataCell(Text(document.data()['mobile'] ?? "")),
+        DataCell(Text(document.data()['email'] ?? "")),
         DataCell(IconButton(
           icon: Icon(Icons.remove_red_eye_outlined),
           onPressed: () {},
