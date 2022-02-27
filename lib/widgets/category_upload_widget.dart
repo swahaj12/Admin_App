@@ -24,7 +24,7 @@ class _CategoryCreateWidgetState extends State<CategoryCreateWidget> {
     ArsProgressDialog progressDialog = ArsProgressDialog(
       context,
       blur: 2,
-      backgroundColor: const Color(0xFF84c225).withOpacity(.3),
+      backgroundColor: Colors.deepOrange.withOpacity(.3),
       animationDuration: Duration(milliseconds: 500),
     );
     return Container(
@@ -166,7 +166,7 @@ class _CategoryCreateWidgetState extends State<CategoryCreateWidget> {
 
   void uploadStorage() {
     final dateTime = DateTime.now();
-    final path = 'CategoryImage/$dateTime';
+    final path = 'CategoryImage/$_url/$dateTime';
     uploadImage(onSelected: (file) {
       if (file != null) {
         setState(() {

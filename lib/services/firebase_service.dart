@@ -1,3 +1,4 @@
+import 'package:ars_progress_dialog/ars_progress_dialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ class FirebaseServices {
       FirebaseFirestore.instance.collection('vendors');
   CollectionReference category =
       FirebaseFirestore.instance.collection('category');
+  CollectionReference boys = FirebaseFirestore.instance.collection('boys');
 
   FirebaseStorage storage = FirebaseStorage.instance;
   Future<DocumentSnapshot> getAdminCredentials(id) {
@@ -47,6 +49,62 @@ class FirebaseServices {
       });
     }
     return downloadUrl;
+  }
+
+  Future<void> saveDeliveryBoys(email, password) async {
+    boys.doc(email).set({
+      'accVerified': false,
+      'address': '',
+      'email': email,
+      'imageUrl': '',
+      'location': GeoPoint(0, 0),
+      'mobile': '',
+      'name': '',
+      'password': password,
+      'uid': '',
+    });
+  }
+
+  updateDeliveryboyStatus({id, context, status}) async {
+    ArsProgressDialog progressDialog = ArsProgressDialog(
+      context,
+      blur: 2,
+      backgroundColor: Colors.deepOrange.withOpacity(.3),
+      animationDuration: Duration(milliseconds: 500),
+    );
+    progressDialog.show();
+
+    DocumentReference documentReference =
+        FirebaseFirestore.instance.collection('boys').doc(id);
+
+    return FirebaseFirestore.instance
+        .runTransaction((transaction) async {
+          // Get the document
+          DocumentSnapshot snapshot = await transaction.get(documentReference);
+
+          if (!snapshot.exists) {
+            throw Exception("User does not exist!");
+          }
+
+          // Perform an update on the document
+          transaction.update(documentReference, {'accVerified': status});
+
+          // Return the new count
+        })
+        .then((value) => {
+              progressDialog.dismiss(),
+              showMyDialog(
+                  title: 'Delivery Boy Status',
+                  message: status == true
+                      ? 'Delivery boy approved status updated as Approved'
+                      : 'Delivery boy approved status updated as not Approved',
+                  context: context)
+            })
+        .catchError((error) => showMyDialog(
+              title: 'Delivery Boy Status',
+              context: context,
+              message: 'Failed to update delivery boy status $error',
+            ));
   }
 
   Future<void> confirmDeleteDialog({title, message, context, id}) async {
@@ -95,7 +153,6 @@ class FirebaseServices {
             child: ListBody(
               children: <Widget>[
                 Text(message),
-                Text('Please try again'),
               ],
             ),
           ),

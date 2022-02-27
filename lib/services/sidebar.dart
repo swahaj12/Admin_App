@@ -1,5 +1,6 @@
 import 'package:admin_pannel_app/screens/admin_user.dart';
 import 'package:admin_pannel_app/screens/category_screen.dart';
+import 'package:admin_pannel_app/screens/delivery_boy_screen.dart';
 import 'package:admin_pannel_app/screens/homescreen.dart';
 import 'package:admin_pannel_app/screens/login_screen.dart';
 import 'package:admin_pannel_app/screens/manage_banners.dart';
@@ -32,6 +33,10 @@ class SideBarWidget {
             title: 'Vendor',
             route: VendorScreen.id,
             icon: CupertinoIcons.group_solid),
+        MenuItem(
+            title: 'Delivery Boy',
+            route: DeliveryBoyScreen.id,
+            icon: Icons.delivery_dining),
         MenuItem(
           title: 'Category',
           route: CategoryScreen.id,

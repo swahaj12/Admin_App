@@ -25,7 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
     ArsProgressDialog progressDialog = ArsProgressDialog(
       context,
       blur: 2,
-      backgroundColor: const Color(0xFF84c225).withOpacity(.3),
+      backgroundColor: Colors.deepOrange.withOpacity(.3),
       animationDuration: Duration(milliseconds: 500),
     );
 
@@ -91,7 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
             return Container(
               decoration: BoxDecoration(
                 gradient: LinearGradient(
-                    colors: [Color(0xFF84c225), Colors.white],
+                    colors: [Colors.deepOrange, Colors.white],
                     stops: [1.0, 1.0],
                     begin: Alignment.topCenter,
                     end: Alignment(0.0, 0.0)),
@@ -103,7 +103,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   height: 500,
                   child: Card(
                     elevation: 6,
-                    shape: Border.all(color: Colors.green, width: 2),
+                    shape: Border.all(color: Colors.deepOrange, width: 2),
                     child: Padding(
                       padding: const EdgeInsets.all(20.0),
                       child: Form(

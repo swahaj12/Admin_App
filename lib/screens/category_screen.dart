@@ -32,6 +32,7 @@ class _CategoryScreenState extends State<CategoryScreen> {
           alignment: Alignment.topLeft,
           padding: const EdgeInsets.all(10),
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 'Categories',

@@ -23,7 +23,7 @@ class _BannerUploadSwidgetState extends State<BannerUploadSwidget> {
     ArsProgressDialog progressDialog = ArsProgressDialog(
       context,
       blur: 2,
-      backgroundColor: const Color(0xFF84c225).withOpacity(.3),
+      backgroundColor: Colors.deepOrange.withOpacity(.3),
       animationDuration: Duration(milliseconds: 500),
     );
     return Container(

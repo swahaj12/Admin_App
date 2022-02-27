@@ -150,7 +150,7 @@ class _VendorDataTableState extends State<VendorDataTable> {
               icon: document.data()['accVerified']
                   ? Icon(
                       Icons.check_circle,
-                      color: Colors.green,
+                      color: Colors.deepOrange,
                     )
                   : Icon(
                       Icons.remove_circle,
@@ -167,7 +167,7 @@ class _VendorDataTableState extends State<VendorDataTable> {
               icon: document.data()['isTopPicked']
                   ? Icon(
                       Icons.check_circle,
-                      color: Colors.green,
+                      color: Colors.deepOrange,
                     )
                   : Icon(
                       Icons.remove_circle,

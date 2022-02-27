@@ -185,7 +185,7 @@ class _VendorDetailsBoxState extends State<VendorDetailsBox> {
                                     child: Container(
                                   child: snapshot.data!['isTopPicked']
                                       ? Chip(
-                                          backgroundColor: Colors.green,
+                                          backgroundColor: Colors.deepOrange,
                                           label: Row(
                                             children: [
                                               Icon(
@@ -347,7 +347,7 @@ class _VendorDetailsBoxState extends State<VendorDetailsBox> {
                     right: 10,
                     child: snapshot.data!['accVerified']
                         ? Chip(
-                            backgroundColor: Colors.green,
+                            backgroundColor: Colors.deepOrange,
                             label: Row(
                               children: [
                                 Icon(

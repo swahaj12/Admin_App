@@ -38,6 +38,7 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_admin_scaffold: ^1.0.0
+  flutter_switch: ^0.3.2
 
 dev_dependencies:
   flutter_lints: ^1.0.0

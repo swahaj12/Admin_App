@@ -1,5 +1,6 @@
 import 'package:admin_pannel_app/screens/admin_user.dart';
 import 'package:admin_pannel_app/screens/category_screen.dart';
+import 'package:admin_pannel_app/screens/delivery_boy_screen.dart';
 import 'package:admin_pannel_app/screens/homescreen.dart';
 import 'package:admin_pannel_app/screens/login_screen.dart';
 import 'package:admin_pannel_app/screens/manage_banners.dart';
@@ -24,7 +25,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Admin Panel',
       theme: ThemeData(
-        primaryColor: const Color(0xFF84c225),
+        primaryColor: Colors.deepOrange,
       ),
       home: SplashScreen(),
       routes: {
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
         AdminUsers.id: (context) => AdminUsers(),
         SettingScreen.id: (context) => SettingScreen(),
         VendorScreen.id: (context) => VendorScreen(),
+        DeliveryBoyScreen.id: (context) => DeliveryBoyScreen(),
       },
     );
   }
