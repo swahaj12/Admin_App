@@ -76,7 +76,7 @@ class _ApprovedDeliveryBoysState extends State<ApprovedDeliveryBoys> {
         return DataRow(cells: [
           DataCell(
             Container(
-                width: 60,
+                width: 80,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: Image.network(
